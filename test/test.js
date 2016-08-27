@@ -20,11 +20,10 @@ describe('osu!api methods', function() {
 			osuApi.getUser({u: 'brussell98'}).then(user => {
 				expect(user).to.be.an.instanceof(osu.User);
 				expect(user.username).to.equal('brussell98');
-				expect(user.scores).to.be.an('object');
 				expect(user.scores.total).to.be.a('string');
 				if (user.events.length !== 0)
 					expect(user.events[0]).to.be.instanceof(osu.Event);
-					expect(parseInt(user.events[0].epicfactor)).to.be.within(1, 32);
+					expect(parseInt(user.events[0].epicFactor)).to.be.within(1, 32);
 					expect(user.events[0].dateUTC).to.be.a('date');
 			});
 		});
@@ -49,6 +48,20 @@ describe('osu!api methods', function() {
 				expect(scores[0].dateUTC).to.be.a('date');
 				if (scores[0].mods.length !== 0)
 					expect(scores[0].mods[0]).to.be.a('string');
+			});
+		});
+	});
+
+	describe('getBeatmaps()', function() {
+		it('Should resolve with an array of valid Beatmaps', function() {
+			osuApi.getBeatmaps({b: '765567'}).then(beatmaps => {
+				expect(beatmaps).to.be.an('array');
+				expect(beatmaps).to.have.length(1);
+				expect(beatmaps[0]).to.be.an.instanceof(osu.Beatmap);
+				expect(beatmaps[0].source).to.equal('GATE 自衛隊 彼の地にて、斯く戦えり');
+				expect(beatmaps[0].tags).to.be.an('array');
+				expect(beatmaps[0].approvedDate).to.be.a('date');
+				expect(beatmaps[0].language).to.be.one.of(osu.Constants.Beatmaps.language);
 			});
 		});
 	});
