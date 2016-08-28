@@ -4,7 +4,7 @@
   "description": "An object-oriented library for easy interaction with the osu!api",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha --reporter spec"
+    "test": "./node_modules/.bin/mocha -t 3000 --reporter spec"
   },
   "repository": {
     "type": "git",
@@ -13,7 +13,8 @@
   "keywords": [
     "osu",
     "api",
-    "es6"
+    "es6",
+	"promise"
   ],
   "author": "brussell98",
   "license": "MIT",

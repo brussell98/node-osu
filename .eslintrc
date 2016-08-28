@@ -9,7 +9,7 @@
         "modules": true
     },
     "rules": {
-        "no-console": 0,
+        "no-console": 1,
         "no-control-regex": 0,
         "no-alert": 1,
         "no-else-return": 1,
@@ -22,7 +22,8 @@
         "space-before-function-paren": ["warn", "never"],
         "arrow-spacing": 1,
         "comma-spacing": ["warn", { "before": false, "after": true }],
-        "no-mixed-spaces-and-tabs": ["error", "smart-tabs"]
+        "no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
+        "indent": ["error", "tab"]
     },
     extends: "eslint:recommended"
 }
