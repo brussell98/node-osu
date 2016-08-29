@@ -18,12 +18,12 @@ describe('osu!api methods', function() {
 		it('Should resolve with a valid User', function() {
 			return osuApi.getUser({u: 'brussell98'}).then(user => {
 				expect(user).to.be.an.instanceof(osu.User);
-				expect(user.username).to.equal('brussell98');
+				expect(user.name).to.equal('brussell98');
 				expect(user.scores.total).to.be.a('string');
 				if (user.events.length !== 0) {
 					expect(user.events[0]).to.be.instanceof(osu.Event);
 					expect(parseInt(user.events[0].epicFactor)).to.be.within(1, 32);
-					expect(user.events[0].dateUTC).to.be.a('date');
+					expect(user.events[0].date).to.be.a('date');
 				}
 			}).catch(error => {
 				throw error;

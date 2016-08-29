@@ -1,32 +1,32 @@
 {
-  "name": "node-osu",
-  "version": "0.1.0",
-  "description": "An object-oriented library for easy interaction with the osu!api",
-  "main": "index.js",
-  "scripts": {
-    "test": "./node_modules/.bin/mocha -t 3000 --reporter spec"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/brussell98/node-osu.git"
-  },
-  "keywords": [
-    "osu",
-    "api",
-    "es6",
-	"promise"
-  ],
-  "author": "brussell98",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/brussell98/node-osu/issues"
-  },
-  "homepage": "https://github.com/brussell98/node-osu#readme",
-  "dependencies": {
-    "superagent": "^2.1.0"
-  },
-  "devDependencies": {
-    "chai": "^3.5.0",
-    "mocha": "^3.0.2"
-  }
+	"name": "node-osu",
+	"version": "0.1.0",
+	"description": "An object-oriented library for easy interaction with the osu!api",
+	"main": "index.js",
+	"scripts": {
+		"test": "./node_modules/.bin/mocha -t 10000 --reporter spec"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/brussell98/node-osu.git"
+	},
+	"keywords": [
+		"osu",
+		"api",
+		"es6",
+		"promise"
+	],
+	"author": "brussell98",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/brussell98/node-osu/issues"
+	},
+	"homepage": "https://github.com/brussell98/node-osu#readme",
+	"dependencies": {
+		"superagent": "^2.1.0"
+	},
+	"devDependencies": {
+		"chai": "^3.5.0",
+		"mocha": "^3.0.2"
+	}
 }
