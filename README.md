@@ -44,7 +44,7 @@ const osu = require('node-osu');
   - teamType: Get a game's team mode from a number representation
   - team: Get a user's team from a number representation
 
-### Api
+### osu.Api
 All methods return a Promise.   
 `options` refers to the url parameters listed here: https://github.com/ppy/osu-api/wiki
 
