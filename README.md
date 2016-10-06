@@ -1,4 +1,4 @@
-# node-osu
+# node-osu [![Code Climate](https://codeclimate.com/github/brussell98/node-osu/badges/gpa.svg)](https://codeclimate.com/github/brussell98/node-osu)
 Making the osu api easy to use.   
 ES6 because it's awesome :wink:
 
@@ -50,7 +50,11 @@ All methods return a Promise.
 
 #### Constructor
 ```js
-var osuApi = new osu.Api('A3tGREAemXk213gfJJUewH9675g')
+var osuApi = new osu.Api('A3tGREAemXk213gfJJUewH9675g', {
+	// baseUrl: sets the base api url (default: https://osu.ppy.sh/api)
+	notFoundAsError: true, // Reject on not found instead of returning nothing. (default: true)
+	completeScores: false // When fetching scores also return the beatmap (default: false)
+})
 ```
 
 #### apiCall(endpoint, options)
@@ -83,6 +87,12 @@ Returns an array of osu.Score objects.
 osuApi.getScores({b: '1036655'}).then(scores => {
 	console.log(scores[0].score);
 });
+
+// or with completeScores set to true
+osuApi.getScores({b: '1036655'}).then((scores, beatmap) => {
+	console.log(scores[0].score);
+	console.log(beatmap.title);
+});
 ```
 
 #### getUserBest(options)
@@ -91,6 +101,12 @@ Returns an array of osu.Score objects.
 osuApi.getUserBest({u: 'brussell98'}).then(scores => {
 	console.log(scores[0].score);
 });
+
+// or with completeScores set to true
+osuApi.getUserBest({u: 'brussell98'}).then(scores => {
+	console.log(scores[0][0].score);
+	console.log(scores[0][1].title);
+});
 ```
 
 #### getUserRecent(options)
@@ -98,6 +114,12 @@ Returns an array of osu.Score objects.
 ```js
 osuApi.getUserRecent({u: 'brussell98'}).then(scores => {
 	console.log(scores[0].score);
+});
+
+// or with completeScores set to true
+osuApi.getUserRecent({u: 'brussell98'}).then(scores => {
+	console.log(scores[0][0].score);
+	console.log(scores[0][1].title);
 });
 ```
 
