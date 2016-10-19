@@ -99,7 +99,7 @@ describe('osu!api methods', function() {
 				expect(scores[0]).to.be.an.instanceOf(osu.Score);
 				expect(scores).to.satisfy(scores => scores.filter(s => s.score && s.beatmapId).length === scores.length);
 				expect(scores[4].date).to.be.a('date');
-				expect(scores[7].perfect).to.be.a('boolean');
+				expect(scores[3].perfect).to.be.a('boolean');
 				expect(scores[2].mods).to.be.an('array');
 			}).catch(error => {
 				throw error;

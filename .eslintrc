@@ -23,7 +23,7 @@
         "arrow-spacing": 1,
         "comma-spacing": ["warn", { "before": false, "after": true }],
         "no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
-        "indent": ["error", "tab"]
+        "indent": ["error", "tab", { "SwitchCase": 1 }]
     },
     extends: "eslint:recommended"
 }
