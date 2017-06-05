@@ -31,7 +31,6 @@ class BeatmapSet{
             'favourites': data[0].favourite_count
         }
 
-        this.difficultyCount = data[0].length;
         this.difficulty = data.map(m => new Beatmap(m));
     }
 
