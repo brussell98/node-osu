@@ -25,5 +25,5 @@
         "no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
         "indent": ["error", "tab", { "SwitchCase": 1 }]
     },
-    extends: "eslint:recommended"
+    "extends": "eslint:recommended"
 }
