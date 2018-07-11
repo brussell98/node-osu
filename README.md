@@ -43,6 +43,7 @@ const osu = require('node-osu');
   - scoringType: Get a game's scoring mode from a number representation
   - teamType: Get a game's team mode from a number representation
   - team: Get a user's team from a number representation
+ - AccuracyMethods: Calculate accuracy from a score's counts
 
 ### osu.Api
 All methods return a Promise.   
@@ -259,6 +260,8 @@ Score {
 	pp: '148.653',
 	mods: [ 'Hidden', 'HardRock', 'DoubleTime', 'FreeModAllowed' ]
 }
+
+Score.getAccuracyFromBeatmap(beatmap) => Number
 ```
 
 ### osu.Match
