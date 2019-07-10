@@ -142,4 +142,18 @@ describe('osu!api methods', function() {
 			expect(match.games[2].scores[0].pass).to.equal(sampleMatch.games[2].scores[0].pass === '1');
 		});
 	});
+	
+	describe('new Score()', function() {
+		it('Should compute accuracy corectly', function() {
+			return osuApi.getScores({ u: 'brussell98', b: '1416386' }).then(scores => {
+				return osuApi.getBeatmaps({ b: '1416386' }).then(beatmaps => {
+					expect(scores[0].getAccuracyFromBeatmap(beatmaps[0])).to.be.closeTo(.9658, .0001);
+				}).catch(error => {
+					throw error;
+				});
+			}).catch(error => {
+				throw error;
+			});
+		});
+	});
 });
