@@ -2,3 +2,4 @@ test/auth.txt
 node_modules
 *.tmp
 *.log
+.vscode
