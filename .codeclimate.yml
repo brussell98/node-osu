@@ -1,8 +1,8 @@
 engines:
   eslint:
     enabled: true
-    channel: "eslint-3"
-    config: .eslintrc
+    channel: "eslint-5"
+    config: .eslintrc.js
   duplication:
     enabled: false
     config:

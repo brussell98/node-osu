@@ -1,5 +1,3 @@
-"use strict";
-
 module.exports = {
 	Api: require('./lib/Api.js'),
 	Constants: require('./lib/Constants.js'),
