@@ -18,6 +18,7 @@ describe('osu!api methods', function() {
 				expect(user).to.be.an.instanceof(osu.User);
 				expect(user.name).to.equal('brussell98');
 				expect(user.scores.total).to.be.a('string');
+
 				if (user.events.length !== 0) {
 					expect(user.events[0]).to.be.instanceof(osu.Event);
 					expect(parseInt(user.events[0].epicFactor)).to.be.within(1, 32);
@@ -111,7 +112,7 @@ describe('osu!api methods', function() {
 	describe('new Match()', function() {
 		it('Should return a valid Match', function() {
 			const sampleMatch = require('./sampleMatch.json');
-			const match = new osu.Match(sampleMatch);
+			const match = new osu.Match({ }, sampleMatch);
 			expect(match.start).to.be.a('date');
 			expect(match.name).to.equal(sampleMatch.match.name);
 			expect(match.games).to.be.an('array');
@@ -152,6 +153,21 @@ describe('osu!api methods', function() {
 				}).catch(error => {
 					throw error;
 				});
+			}).catch(error => {
+				throw error;
+			});
+		});
+	});
+
+	describe('parseNumeric', function () {
+		it('Should return numeric non-id values as numbers', function() {
+			osuApi.parseNumeric = true;
+
+			return osuApi.getScores({ b: '1036655' }).then(scores => {
+				expect(scores[0].user.id).to.be.a('string');
+				expect(scores[0].pp).to.be.a('number');
+
+				osuApi.parseNumeric = false;
 			}).catch(error => {
 				throw error;
 			});

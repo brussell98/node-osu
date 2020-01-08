@@ -1,11 +1,11 @@
 module.exports = {
 	Api: require('./lib/Api.js'),
 	Constants: require('./lib/Constants.js'),
-	Beatmap: require('./lib/Base/Beatmap.js'),
-	Score: require('./lib/Base/Score.js'),
-	User: require('./lib/Base/User.js'),
-	Match: require('./lib/Base/Match.js'),
-	Game: require('./lib/Base/Game.js'),
-	MultiplayerScore: require('./lib/Base/MultiplayerScore.js'),
-	Event: require('./lib/Base/Event.js')
+	Beatmap: require('./lib/base/Beatmap.js'),
+	Score: require('./lib/base/Score.js'),
+	User: require('./lib/base/User.js'),
+	Match: require('./lib/base/Match.js'),
+	Game: require('./lib/base/Game.js'),
+	MultiplayerScore: require('./lib/base/MultiplayerScore.js'),
+	Event: require('./lib/base/Event.js')
 };

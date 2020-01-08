@@ -28,7 +28,7 @@ Require node-osu
 const osu = require('node-osu');
 ```
 
-### osu.Contants
+### osu.Constants
 - Mods: An object containing the bitwise representation for each mod
 - URLSchemas: An object containing osu url schema generating functions
 	- multiplayerMatch: Function taking `<id>, [password]`
@@ -56,8 +56,9 @@ All methods return a Promise.
 const osuApi = new osu.Api('A3tGREAemXk213gfJJUewH9675g', {
 	// baseUrl: sets the base api url (default: https://osu.ppy.sh/api)
 	notFoundAsError: true, // Throw an error on not found instead of returning nothing. (default: true)
-	completeScores: false // When fetching scores also fetch the beatmap they are for (Allows getting accuracy) (default: false)
-})
+	completeScores: false, // When fetching scores also fetch the beatmap they are for (Allows getting accuracy) (default: false)
+	parseNumeric: false // Parse numeric values into numbers/floats, excluding ids
+});
 ```
 
 #### apiCall(endpoint, options)
@@ -151,8 +152,7 @@ osuApi.getReplay({ m: '0', b: '1337', u: 'brussell98' }).then(replay => {
 User {
 	id: '7541046',
 	name: 'brussell98',
-	counts:
-	{
+	counts: {
 		'50': '34327',
 		'100': '393959',
 		'300': '4008334',
@@ -215,8 +215,7 @@ Beatmap {
 	rating: '9.45067',
 	bpm: '200',
 	mode: 'Standard',
-	tags:
-	[
+	tags: [
 		'jieitai',
 		'kanochi',
 		'nite',
@@ -292,7 +291,7 @@ Score {
 	rank: 'SH',
 	pp: '240.73', // Can be null (in recent user scores for example)
 	hasReplay: true,
-	raw_mods: '88',
+	raw_mods: 88,
 	beatmap: undefined, // or `Beatmap {...}` with completeScores
 
 	// Getters
@@ -328,7 +327,7 @@ Game {
 	matchType: '0', // Unknown purpose
 	scoringType: 'Score v2',
 	teamType: 'Team vs',
-	raw_mods: '64',
+	raw_mods: 64,
 	scores: [ MultiplayerScore {...}, ...] // Will be empty if in progress
 
 	// Getters
@@ -357,7 +356,7 @@ MultiplayerScore {
 	},
 	perfect: false,
 	pass: true,
-	raw_mods: '1',
+	raw_mods: 1,
 
 	// Getters
 	mods: [ 'NoFail' ] // Array of `Constants.Mods` used by the player
