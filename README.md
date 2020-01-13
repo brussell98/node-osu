@@ -116,7 +116,7 @@ osuApi.getUserBest({ u: 'brussell98' }).then(scores => {
 ```
 
 #### getUserRecent(options)
-Returns an array of Score objects.
+Returns an array of Score objects. If the user has not submitted a score in the past 24 hours, this will return as not found.
 ```js
 osuApi.getUserRecent({ u: 'brussell98' }).then(scores => {
 	console.log(scores[0].score);
@@ -273,7 +273,7 @@ Beatmap {
 Score {
 	score: '10380039',
 	user: {
-		name: 'Sarah',
+		name: 'Sarah', // null when using a getUserX method
 		id: '7777836'
 	},
 	beatmapId: null, // When using getScores() without completeScores this will be null

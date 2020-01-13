@@ -87,6 +87,7 @@ describe('osu!api methods', function() {
 				expect(scores[4].date).to.be.a('date');
 				expect(scores[7].perfect).to.be.a('boolean');
 				expect(scores[2].mods).to.be.an('array');
+				expect(scores[0].beatmap).to.equal(undefined);
 			}).catch(error => {
 				throw error;
 			});
@@ -144,22 +145,34 @@ describe('osu!api methods', function() {
 		});
 	});
 
-	describe('new Score()', function() {
-		it('Should compute accuracy corectly', function() {
-			return osuApi.getScores({ u: 'brussell98', b: '1416386' }).then(scores => {
-				return osuApi.getBeatmaps({ b: '1416386' }).then(beatmaps => {
-					scores[0].beatmap = beatmaps[0];
-					expect(scores[0].accuracy).to.be.closeTo(.9658, .0001);
-				}).catch(error => {
-					throw error;
-				});
-			}).catch(error => {
-				throw error;
-			});
+	describe('Scores with competeScores enabled', function() {
+		it('Should have a beatmap included', async function() {
+			osuApi.completeScores = true;
+
+			const scores = await osuApi.getScores({ u: 'brussell98', b: '1416386', limit: 1 });
+			const scoresBest = await osuApi.getUserBest({ u: 'brussell98', limit: 1 });
+
+			expect(scores[0].beatmapId).to.equal('1416386');
+			expect(scores[0].beatmap).to.be.an.instanceof(osu.Beatmap);
+
+			expect(scoresBest[0].beatmapId).to.exist;
+			expect(scoresBest[0].beatmap).to.be.an.instanceof(osu.Beatmap);
+
+			osuApi.completeScores = false;
+		});
+
+		it('Should compute accuracy correctly', async function() {
+			osuApi.completeScores = true;
+
+			const scores = await osuApi.getScores({ u: 'brussell98', b: '1416386', limit: 1 });
+
+			expect(scores[0].accuracy).to.be.closeTo(.9658, .0001);
+
+			osuApi.completeScores = false;
 		});
 	});
 
-	describe('parseNumeric', function () {
+	describe('parseNumeric', function() {
 		it('Should return numeric non-id values as numbers', function() {
 			osuApi.parseNumeric = true;
 
