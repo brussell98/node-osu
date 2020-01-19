@@ -33,7 +33,7 @@ describe('osu!api methods', function() {
 			return osuApi.getUser({ u: '' }).catch(error => {
 				expect(error).to.be.an('error');
 				expect(error.message).to.equal('Not found');
-			})
+			});
 		});
 	});
 
