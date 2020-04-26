@@ -9,7 +9,7 @@ export class Api {
      * @param {Boolean} [options.completeScores=false] When fetching scores also fetch the beatmap they are for (Allows getting accuracy)
      * @param {Boolean} [options.parseNumeric=false] Parse numeric properties into numbers. May have overflow
      */
-    constructor(apiKey: string, options);
+    constructor(apiKey: string, options: constructorOptions);
 
     /**
      * Makes an api call
@@ -29,7 +29,7 @@ export class Api {
      * @param {String} [options.mp] Match id to get information from
      * @returns {Promise<Object>} The response body
      */
-    apiCall(endpoint, options): Promise<Object>;
+    apiCall(endpoint, options: apiCallOptions): Promise<Object>;
 
     /**
      * Returns an array of Beatmap objects
@@ -46,7 +46,7 @@ export class Api {
      * @param {Number} [options.mods] Mods that apply to the beatmap requested. Default is 0
      * @returns {Promise<Beatmap[]>}
      */
-    getBeatmaps(options): Promise<Beatmap[]>;
+    getBeatmaps(options: getBeatmapsOptions): Promise<Beatmap[]>;
 
     /**
          * Returns a Match object.
@@ -54,7 +54,7 @@ export class Api {
          * @param {String} options.mp Match id to get information from
          * @returns {Promise<Match>}
          */
-    getMatch(options): Promise<Match>;
+    getMatch(options: getMatchOptions): Promise<Match>;
 
     /**
      * Returns a replay object. **Do not spam this endpoint.**
@@ -66,7 +66,7 @@ export class Api {
      * @param {Number} [options.mods] Specify a mod or mod combination
      *
      */
-    getReplay(options): Promise<any>;
+    getReplay(options: getReplayOptions): Promise<any>;
 
     /**
      * Returns an array of Score objects
@@ -78,7 +78,7 @@ export class Api {
      * @param {Number} [options.limit] Amount of results from the top (range between 1 and 100 - defaults to 50)
      * @returns {Promise<Score[]>}
      */
-    getScores(options): Promise<Score[]>;
+    getScores(options: getScoresOptions): Promise<Score[]>;
 
     /**
      * Returns a User object
@@ -89,7 +89,7 @@ export class Api {
      * @param {Number} [options.event_days] Max number of days between now and last event date. Range of 1-31. Default value is 1
      * @returns {Promise<User>}
      */
-    getUser(options): Promise<User>;
+    getUser(options: getUserOptions): Promise<User>;
 
 
     /**
@@ -101,7 +101,7 @@ export class Api {
      * @param {Number} [options.limit] Amount of results (range between 1 and 100 - defaults to 10)
      * @returns {Promise<Score[]>}
      */
-    getUserBest(options): Promise<Score[]>;
+    getUserBest(options: getUserBestOptions): Promise<Score[]>;
 
 
     /**
@@ -114,14 +114,14 @@ export class Api {
      * @param {Number} [options.limit] Amount of results (range between 1 and 50 - defaults to 10)
      * @returns {Promise<Score[]>}
      */
-    getUserRecent(options): Promise<Score[]>;
+    getUserRecent(options: getUserRecentOptions): Promise<Score[]>;
 
     /**
      * Returns a not found error or the response, depending on the config
      * @param {Object} response
      * @returns {Object}
      */
-    notFound(response): any;
+    notFound(response: notFoundResponse): any;
 
 }
 
@@ -185,13 +185,35 @@ export class Event {
 
 }
 
-export class Game {
-    constructor(...args: any[]);
+export class Match {
+    id: string;
+    name: string;
+    raw_start: string;
+    raw_end: string;
+    games: Game[];
+
+    // Getters
+    start: Date;
+    end: Date
 
 }
 
-export class Match {
-    constructor(...args: any[]);
+export class Game {
+    id: string;
+    raw_start: string;
+    raw_end: string;
+    beatmapId: string;
+    mode: string;
+    matchType: string; // Unknown purpose
+    scoringType: string;
+    teamType: string;
+    raw_mods: number;
+    scores: MultiplayerScore[] // Will be empty if in progress
+
+    // Getters
+    start: Date;
+    end: Date;
+    mods: Constants['Mods'][] // Array of `Constants.Mods` required for all players
 
 }
 
@@ -378,4 +400,86 @@ export class Constants {
         multiplayerMatch: any;
         spectate: any;
     };
+}
+
+
+//Options
+
+declare class constructorOptions {
+    baseUrl?: boolean;
+    notFoundAsError?: boolean;
+    completeScores?: boolean;
+    parseNumeric?: boolean;
+}
+
+declare class apiCallOptions {
+    since?: Date
+    s?: string;
+    b?: string
+    u?: string;
+    type?: 'string' | 'id';
+    m?: 0 | 1 | 2 | 3;
+    a?: 0 | 1;
+    h?: string;
+    limit?: number;
+    mods?: number;
+    event_days?: number;
+    mp?: string;
+}
+
+declare class getBeatmapsOptions {
+    b?: string;
+    since?: Date;
+    s?: string;
+    u?: string;
+    type?: 'string' | 'id';
+    m?: 0 | 1 | 2 | 3;
+    a?: 0 | 1;
+    h?: string;
+    limit?: number;
+    mods?: number;
+}
+declare class getMatchOptions {
+    mp?: string;
+}
+
+declare class getReplayOptions {
+    m?: 0 | 1 | 2 | 3;
+    b?: string;
+    u?: string;
+    type?: 'string' | 'id';
+    mods?: number;
+}
+
+declare class getScoresOptions {
+    b?: string;
+    u?: string;
+    m?: 0 | 1 | 2 | 3;
+    type?: 'string' | 'id';
+    limit?: number;
+}
+
+declare class getUserOptions {
+    u?: string;
+    m?: 0 | 1 | 2 | 3;
+    type?: 'string' | 'id';
+    event_days?: number;
+}
+
+declare class getUserBestOptions {
+    u?: string;
+    m?: 0 | 1 | 2 | 3;
+    type?: 'string' | 'id';
+    limit?: number;
+}
+
+declare class getUserRecentOptions {
+    u?: string;
+    m?: 0 | 1 | 2 | 3;
+    type?: 'string' | 'id';
+    limit?: number;
+}
+
+declare class notFoundResponse {
+    response?: object;
 }
