@@ -1,6 +1,6 @@
 {
 	"name": "node-osu",
-	"version": "2.2.0",
+	"version": "2.2.1",
 	"description": "A library for interacting with the osu api",
 	"main": "index.js",
 	"scripts": {
@@ -13,12 +13,12 @@
 	"keywords": [
 		"osu",
 		"api",
-		"es6",
 		"promise",
 		"async"
 	],
 	"author": "brussell98",
 	"license": "MIT",
+	"types": "index.d.ts",
 	"bugs": {
 		"url": "https://github.com/brussell98/node-osu/issues"
 	},

@@ -361,6 +361,7 @@ export class Constants {
         Key9: number;
         KeyCoop: number;
         KeyMod: number;
+		Mirror: number;
         Nightcore: number;
         NoFail: number;
         None: number;
@@ -369,6 +370,7 @@ export class Constants {
         Relax: number;
         Relax2: number;
         ScoreIncreaseMods: number;
+		ScoreV2: number;
         SpunOut: number;
         SuddenDeath: number;
         Target: number;
