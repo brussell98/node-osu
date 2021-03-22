@@ -214,6 +214,7 @@ export class Game {
     start: Date;
     end: Date;
     mods: Constants['Mods'][] // Array of `Constants.Mods` required for all players
+    cleanMods: string[];
 
 }
 
@@ -251,6 +252,8 @@ export class Score {
     date: Date | string;
 
     mods: string[] | string;
+
+    cleanMods: string[];
 
     accuracy: undefined | string | number;
 }
