@@ -207,6 +207,7 @@ Beatmap {
 	hash: '49ae1a43f732d07aff8efab2b0f22bdf',
 	title: 'GATE~Sore wa Akatsuki no you ni~ (TV size)',
 	creator: 'Del05',
+	creatorId: '4458550',
 	version: 'Insane',
 	source: 'GATE 自衛隊 彼の地にて、斯く戦えり',
 	artist: 'KISIDA KYODAN & THE AKEBOSI ROCKETS',
