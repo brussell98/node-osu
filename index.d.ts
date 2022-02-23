@@ -131,6 +131,7 @@ export class Beatmap {
     hash: string;
     title: string;
     creator: string;
+    creatorId: string;
     version: string;
 
     source: string;
